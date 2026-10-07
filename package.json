@@ -1,0 +1,44 @@
+{
+  "name": "sukitala",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:integration": "DATABASE_URL=\"$DATABASE_URL\" vitest run src/lib/data/finance.integration.test.ts",
+    "db:test-rls": "bash db/local-dev/test-rls.sh",
+    "verify:live:preflight": "node scripts/verify-live-preflight.mjs",
+    "verify:live:rls": "bash db/live-verify/test-rls-live.sh",
+    "verify:live": "node scripts/verify-live-preflight.mjs && bash db/live-verify/test-rls-live.sh && node scripts/verify-live-summary.mjs",
+    "typecheck": "next typegen && tsc --noEmit",
+    "verify": "npm run typecheck && npm run lint && npm run test && npm run build"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.6",
+    "@supabase/supabase-js": "^2.115.0",
+    "bcryptjs": "^3.0.3",
+    "next": "^16.3.6",
+    "pg": "^8.23.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.1.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.1",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vitest": "^4.1.11"
+  }
+}
